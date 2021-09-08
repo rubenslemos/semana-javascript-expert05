@@ -11,8 +11,9 @@ export default class FileHelper {
                 size: prettyBytes(size),
                 file: currentFiles[fileIndex],
                 lastModified: birthtime,
-                owner: process.env.USER
+                owner: process.env.USERNAME
             })
         }
+        return filesStatuses
     }
 }
