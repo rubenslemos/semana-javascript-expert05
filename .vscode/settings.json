@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
-        "sidenav"
-    ]
+        "sidenav",
+        "textfield"
+    ],
+    "terminal.integrated.defaultProfile.windows": "openSUSE-Leap-15.3 (WSL)"
 }

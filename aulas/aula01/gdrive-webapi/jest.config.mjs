@@ -1,12 +1,12 @@
 /*
- * For a detailed explanation regarding each configuration property, visit:
+ * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
 
 export default {
     clearMocks: true,
     restoreMocks: true,
-    // collectCoverage: true,
+    collectCoverage: true,
     coverageDirectory: "coverage",
     coverageProvider: "v8",
     coverageReporters: [
@@ -25,11 +25,8 @@ export default {
     watchPathIgnorePatterns: [
         "node_modules"
     ],
-    transformIgnorePatterns: [
-        "node_modules"
-    ],
+    transformIgnorePatterns: ["node_modules"],
     collectCoverageFrom: [
-        "src/**/*.js",
-        "!src/**/index.js"
-    ]
+        "src/**/*.js", "!src/**/index.js"
+    ],
 };
