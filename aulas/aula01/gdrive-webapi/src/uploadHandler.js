@@ -21,6 +21,7 @@ export default class UploadHandler {
             for await (const chunk of source) {
                 yield chunk
                 processedAlready += chunk.length
+
                 if (!this.canExecute(this.lastMessageSent)) {
                     continue;
                 }

@@ -1,16 +1,29 @@
 {
-    "name": "@erickwendel/gdrive-webapp",
+    "name": "@rubenslemos/gdrive-webapi",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "start": "npx http-server public"
+        "start": "npx http-server public",
+        "dev": "npx http-server public --cert certificates/cert.pem --key certificates/key.pem --ssl -o",
+        "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand",
+        "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --runInBand",
+        "test:cov": "NODE_OPTIONS=--experimental-vm-modules npx jest --no-cache --runInBand --coverage"
     },
     "keywords": [],
-    "author": "erickwendel",
+    "author": "@rubenslemos",
     "license": "ISC",
+    "devDependencies": {
+        "jest": "^27.1.0",
+        "nodemon": "2.0"
+    },
     "dependencies": {
-        "http-server": "^0.12.3"
+        "busboy": "^0.3.1",
+        "form-data": "4.0",
+        "pino": "6.8",
+        "pino-pretty": "5.1",
+        "pretty-bytes": "5.6",
+        "socket.io": "4.1"
     }
 }

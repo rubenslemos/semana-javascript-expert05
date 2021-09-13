@@ -41,7 +41,12 @@ describe('#Routes test suite ', () => {
             routes.setSocketInstance(ioObj)
             expect(routes.io).toStrictEqual(ioObj)
         })
-
+        describe('#Ru', () => {
+            test('test', () => {
+                const routes = new Routes()
+                expect(routes.downloadsFolder).toStrictEqual('/mnt/d/Users/Rubens/Documents/GitHub/imersao-wendel/semana-javascript-expert05/aulas/aula01/gdrive-webapi/downloads')
+            })
+        })
     })
     describe('#handler', () => {
         test('given an inexistent route it should choose default route', () => {
