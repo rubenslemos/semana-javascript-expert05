@@ -69,5 +69,39 @@ describe('#Routes Integration Test', () => {
             const expectedResult = JSON.stringify({ result: 'Files uploaded with success! ' })
             expect(defaultParams.response.end).toHaveBeenCalledWith(expectedResult)
         })
+        test('should list files to the folder', async() => {
+            const filename = 'rumos.png'
+            const request = TestUtil.generateReadableStream(() => {})
+            const response = TestUtil.generateWritableStream(() => {})
+            const defaultParams = {
+                request: Object.assign(request, {
+                    headers: {
+                        "Content-Type": "multipart/from-data",
+                    },
+                    method: "GET",
+                    url: "/"
+                }),
+                response: Object.assign(response, {
+                    setHeader: jest.fn(),
+                    writeHead: jest.fn(),
+                    end: jest.fn()
+                }),
+                values: () => Object.values(defaultParams),
+            }
+            const routes = new Routes(defaultDownloadsFolder)
+            routes.setSocketInstance(ioObj)
+            await routes.handler(...defaultParams.values())
+            const allFilesFromDefaultsDownloadsFolder = await fs.promises.readdir(defaultDownloadsFolder)
+            expect(allFilesFromDefaultsDownloadsFolder).toEqual([filename])
+            expect(defaultParams.response.writeHead).toHaveBeenCalledWith(200)
+            const fileStat = await fs.promises.stat(`${defaultDownloadsFolder}/${filename}`)
+            const expectedResult = JSON.stringify([{
+                size: '101 kB',
+                file: filename,
+                lastModified: fileStat.birthtime,
+                owner: 'rubens'
+            }])
+            expect(defaultParams.response.end).toHaveBeenCalledWith(expectedResult)
+        })
     })
 })

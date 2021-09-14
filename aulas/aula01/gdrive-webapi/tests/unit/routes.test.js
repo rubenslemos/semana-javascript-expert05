@@ -65,7 +65,6 @@ describe('#Routes test suite ', () => {
             }
             params.request.method = 'inexistent'
             routes.handler(...params.values())
-
             expect(params.response.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', '*')
         })
         test('given method OPTIONS it should options route', async() => {
